@@ -1,0 +1,10 @@
+C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\bin\Debug\C#.exe.config
+C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\bin\Debug\C#.exe
+C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\bin\Debug\C#.pdb
+C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\obj\Debug\C#.csproj.AssemblyReference.cache
+C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\obj\Debug\C_.Properties.Resources.resources
+C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\obj\Debug\C#.csproj.GenerateResource.cache
+C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\obj\Debug\C#.csproj.CoreCompileInputs.cache
+C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\obj\Debug\C#.exe
+C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\obj\Debug\C#.pdb
+C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\obj\Debug\LR4.Form1.resources
