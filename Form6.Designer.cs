@@ -1,4 +1,4 @@
-﻿namespace C_
+﻿namespace LR4
 {
     partial class Form6
     {

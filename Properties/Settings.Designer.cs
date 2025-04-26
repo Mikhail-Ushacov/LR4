@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace C_.Properties
+namespace LR4.Properties
 {
 
 
