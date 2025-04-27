@@ -9,3 +9,5 @@ C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\obj\Debug\C#.exe
 C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\obj\Debug\C#.pdb
 C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\obj\Debug\LR4.Form1.resources
 C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\obj\Debug\LR4.Form4.resources
+C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\obj\Debug\LR4.Form6.resources
+C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\obj\Debug\LR4.Form7.resources
