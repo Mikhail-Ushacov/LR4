@@ -84,28 +84,33 @@ namespace LR4
                 return;
             }
 
-            string[] parts = userData.Split(';');
-            string firstName = parts.Length >= 1 ? parts[0] : "Невідомо";
-            string lastName = parts.Length >= 2 ? parts[1] : "";
-            string passport = parts.Length >= 3 ? parts[2] : "unknown";
             string selectedCandidate = selected.Text;
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-            string voteRaw = $"{passport};{selectedCandidate};{timestamp}";
-            string votePretty = $"{firstName} {lastName} ({passport}): {selectedCandidate} - {timestamp}";
+            string[] parts = userData.Split(';');
+            if (parts.Length < 3)
+            {
+                MessageBox.Show("Некоректні дані користувача.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            // Запис у votes.txt (технічний)
+            string firstName = parts[0];
+            string lastName = parts[1];
+            string passport = parts[2];
+
+            // Формати:
+            string voteRaw = $"{passport};{selectedCandidate};{timestamp}"; // votes.txt
+            string resultLine = $"{firstName};{lastName};{passport};{selectedCandidate};{timestamp}"; // result.txt
+
             File.AppendAllText("votes.txt", voteRaw + Environment.NewLine);
-
-            // Запис у result.txt (для читання)
-            File.AppendAllText("result.txt", votePretty + Environment.NewLine);
+            File.AppendAllText("result.txt", resultLine + Environment.NewLine);
 
             // Видалення з active.txt
             var allLines = File.ReadAllLines("active.txt").ToList();
             allLines.Remove(userData);
             File.WriteAllLines("active.txt", allLines);
 
-            MessageBox.Show("Голос зафіксовано!\nДані збережено в result.txt", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Голос зафіксовано!\nІнформація записана в result.txt", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
     }
