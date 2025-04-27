@@ -28,14 +28,14 @@ namespace LR4
 
         private void LoadCandidates()
         {
-            if (File.Exists("candidates.txt"))
+            if (File.Exists("candidates_company.txt"))
             {
-                string[] lines = File.ReadAllLines("candidates.txt");
+                string[] lines = File.ReadAllLines("candidates_company.txt");
                 listBoxCandidates.Items.AddRange(lines);
             }
             else
             {
-                listBoxCandidates.Items.Add("Файл candidates.txt не знайдено.");
+                listBoxCandidates.Items.Add("Файл candidates_company.txt не знайдено.");
             }
         }
 

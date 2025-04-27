@@ -99,10 +99,8 @@ namespace LR4
             string passport = parts[2];
 
             // Формати:
-            string voteRaw = $"{passport};{selectedCandidate};{timestamp}"; // votes.txt
             string resultLine = $"{firstName};{lastName};{passport};{selectedCandidate};{timestamp}"; // result.txt
 
-            File.AppendAllText("votes.txt", voteRaw + Environment.NewLine);
             File.AppendAllText("result.txt", resultLine + Environment.NewLine);
 
             // Видалення з active.txt
