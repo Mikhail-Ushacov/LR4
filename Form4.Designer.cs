@@ -29,6 +29,7 @@
             this.checkBoxAgree = new System.Windows.Forms.CheckBox();
             this.buttonVote = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -47,6 +48,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Controls.Add(this.labelStartDate);
             this.splitContainer1.Panel2.Controls.Add(this.labelTimeLeft);
             this.splitContainer1.Panel2.Controls.Add(this.buttonRules);
@@ -109,6 +111,16 @@
             this.buttonVote.Text = "Почати голосування";
             this.buttonVote.Click += new System.EventHandler(this.buttonVote_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(153, 349);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(115, 35);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Увійти";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form4
             // 
             this.ClientSize = new System.Drawing.Size(600, 400);
@@ -123,5 +135,7 @@
             this.ResumeLayout(false);
 
         }
+
+        private System.Windows.Forms.Button button1;
     }
 }
