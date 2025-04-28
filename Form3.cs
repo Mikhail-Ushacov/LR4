@@ -18,6 +18,14 @@ namespace LR4
             InitializeComponent();
         }
 
+        private void buttonRegister_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form1 registrationForm = new Form1();
+            registrationForm.ShowDialog();
+            this.Show();
+        }
+
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             string passportInput = textBoxPassport.Text.Trim();
@@ -53,6 +61,18 @@ namespace LR4
                     File.AppendAllText("active.txt", line + Environment.NewLine);
                     MessageBox.Show($"Вхід виконано! Вітаємо, {name} {surname}", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     isMatch = true;
+                    
+                    // Check role and open appropriate form
+                    this.Hide();
+                    if (name == "John" && surname == "Doe") // Admin
+                    {
+                        new Form2().ShowDialog();
+                    }
+                    else // Regular user
+                    {
+                        new Form5(line).ShowDialog();
+                    }
+                    this.Close();
                     break;
                 }
             }
@@ -60,10 +80,9 @@ namespace LR4
             if (!isMatch)
             {
                 MessageBox.Show("Невірний номер паспорта або пароль.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxPassport.Clear();
+                textBoxPassword.Clear();
             }
-
-            textBoxPassport.Clear();
-            textBoxPassword.Clear();
         }
     }
 }

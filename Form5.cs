@@ -24,6 +24,28 @@ namespace LR4
             voteStartTime = DateTime.Now;
             ShowUserInfo();
             LoadCandidates();
+            
+            // Check if already voted
+            // string passport = userLine.Split(';')[2];
+            // if (HasAlreadyVoted(passport))
+            // {
+            //     MessageBox.Show("Ви вже проголосували раніше!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //     this.Close();
+            // }
+        }
+
+        private bool HasAlreadyVoted(string passport)
+        {
+            if (!File.Exists("result.txt")) return false;
+            
+            string[] votes = File.ReadAllLines("result.txt");
+            foreach (string vote in votes)
+            {
+                string[] parts = vote.Split(';');
+                if (parts.Length >= 3 && parts[2] == passport)
+                    return true;
+            }
+            return false;
         }
 
         private void ShowUserInfo()

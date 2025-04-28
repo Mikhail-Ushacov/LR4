@@ -1,3 +1,2 @@
 John;Doe;AB123456;pass123;admin
 Jane;Smith;CD654321;pass456;user
-12;12;12;12

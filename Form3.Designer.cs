@@ -8,6 +8,7 @@
         private System.Windows.Forms.TextBox textBoxPassport;
         private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.Button buttonLogin;
+        private System.Windows.Forms.Button buttonRegister;
 
         protected override void Dispose(bool disposing)
         {
@@ -51,12 +52,21 @@
             this.textBoxPassword.UseSystemPasswordChar = true;
 
             // buttonLogin
-            this.buttonLogin.Location = new System.Drawing.Point(110, 110);
+            this.buttonLogin.Location = new System.Drawing.Point(60, 110);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(100, 30);
             this.buttonLogin.Text = "Увійти";
             this.buttonLogin.UseVisualStyleBackColor = true;
             this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
+
+            // buttonRegister
+            this.buttonRegister = new System.Windows.Forms.Button();
+            this.buttonRegister.Location = new System.Drawing.Point(180, 110);
+            this.buttonRegister.Name = "buttonRegister";
+            this.buttonRegister.Size = new System.Drawing.Size(100, 30);
+            this.buttonRegister.Text = "Реєстрація";
+            this.buttonRegister.UseVisualStyleBackColor = true;
+            this.buttonRegister.Click += new System.EventHandler(this.buttonRegister_Click);
 
             // Form3
             this.ClientSize = new System.Drawing.Size(340, 170);
@@ -65,6 +75,7 @@
             this.Controls.Add(this.labelPassword);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.buttonLogin);
+            this.Controls.Add(this.buttonRegister);
             this.Name = "Form3";
             this.Text = "Вхід користувача";
             this.ResumeLayout(false);
