@@ -25,12 +25,17 @@ namespace LR4
             {
                 string[] candidatesArray = File.ReadAllLines("candidates.txt");
                 candidates.AddRange(candidatesArray);
+
+                // Додати у ListBox
+                listBoxCandidates.Items.Clear();
+                listBoxCandidates.Items.AddRange(candidatesArray);
             }
             else
             {
                 listBoxCandidates.Items.Add("Файл candidates.txt не знайдено.");
             }
         }
+
 
         private void LoadResultsToChart()
         {
@@ -94,6 +99,12 @@ namespace LR4
             SaveStageResults(stage, sortedVotes, totalVotes);
         }
 
+        //private void SaveStageResults(int stage, List<KeyValuePair<string, int>> sortedVotes, int totalVotes)
+        //{
+
+        //}
+
+
         private void SaveStageResults(int stage, List<KeyValuePair<string, int>> sortedVotes, int totalVotes)
         {
             // Відсіяти кандидатів з менше ніж 15%
@@ -101,15 +112,61 @@ namespace LR4
                 .Where(v => ((double)v.Value / totalVotes) * 100 >= 15)
                 .ToList();
 
-            // Оновити candidates.txt – залишити тільки тих, хто має >= 15%
+            var passedCandidates = filteredVotes.Select(v => v.Key).ToHashSet();
+
             if (filteredVotes.Count > 0)
             {
-                File.WriteAllLines("candidates.txt", filteredVotes.Select(v => v.Key));
+                // Оновити candidates.txt – залишити тільки тих, хто має >= 15%
+                File.WriteAllLines("candidates.txt", passedCandidates);
             }
             else
             {
                 MessageBox.Show("Всі кандидати набрали менше 15% голосів. Завершення голосування.");
-                return; // Не продовжуємо, якщо немає кандидатів.
+                return;
+            }
+
+            // Оновити candidates_company.txt – видалити блоки кандидатів, що не пройшли
+            if (File.Exists("candidates_company.txt"))
+            {
+                var companyLines = File.ReadAllLines("candidates_company.txt").ToList();
+                var updatedLines = new List<string>();
+
+                for (int i = 0; i < companyLines.Count;)
+                {
+                    string line = companyLines[i].Trim();
+
+                    // Початок блоку виглядає як "1. Ім'я Прізвище"
+                    if (char.IsDigit(line.FirstOrDefault()) && line.Contains('.') && line.IndexOf('.') < line.Length - 2)
+                    {
+                        int startIndex = i;
+                        string candidateName = line.Substring(line.IndexOf('.') + 1).Trim();
+
+                        var block = new List<string>();
+                        while (i < companyLines.Count && !string.IsNullOrWhiteSpace(companyLines[i]))
+                        {
+                            block.Add(companyLines[i]);
+                            i++;
+                        }
+
+                        // Додати пустий рядок після блоку (як розділювач)
+                        if (i < companyLines.Count)
+                        {
+                            block.Add("");
+                            i++;
+                        }
+
+                        if (passedCandidates.Contains(candidateName))
+                        {
+                            updatedLines.AddRange(block);
+                        }
+                    }
+                    else
+                    {
+                        i++; // Пропустити неформатовані лінії
+                    }
+                }
+
+                File.WriteAllLines("candidates_company.txt", updatedLines);
             }
 
             // Формування результатів для етапу
@@ -127,7 +184,7 @@ namespace LR4
             string path = "stages.txt";
             List<string> lines;
 
-            // Читання поточного вмісту файлу stages.txt
+            // Читання поточного вмісту stages.txt
             if (File.Exists(path))
             {
                 lines = File.ReadAllLines(path).ToList();
@@ -137,7 +194,7 @@ namespace LR4
                 lines = new List<string>();
             }
 
-            // Визначаємо поточний номер етапу
+            // Визначення поточного номера етапу
             int currentStage = 1;
             var stagesLine = lines.FirstOrDefault(l => l.StartsWith("Етапи:"));
             if (stagesLine != null)
@@ -145,13 +202,13 @@ namespace LR4
                 currentStage = int.Parse(stagesLine.Split(':')[1].Trim());
             }
 
-            // Якщо кандидатів більше одного, збільшуємо номер етапу
+            // Якщо кандидатів більше одного – буде наступний етап
             if (filteredVotes.Count > 1)
             {
                 currentStage++;
             }
 
-            // Оновлення "Етапи: N" в першому рядку
+            // Оновлення "Етапи: N"
             if (stagesLine != null)
             {
                 lines[lines.IndexOf(stagesLine)] = $"Етапи: {currentStage}";
@@ -161,18 +218,35 @@ namespace LR4
                 lines.Insert(0, $"Етапи: {currentStage}");
             }
 
-            // Додавання нових результатів етапу
-            lines.Add(""); // Пустий рядок для розділення
+            // Додавання результатів етапу
+            lines.Add("");
             lines.Add(stageResult.TrimEnd());
 
-            // Запис назад у файл stages.txt
             File.WriteAllLines(path, lines);
 
-            // Повернення до Form4
-            //this.Close(); // Закриття поточної форми
-            Form4 form4 = new Form4();
-            form4.Show();
-            
+            // Перехід назад до форми
+            this.Close();
+
+            // Зміщення часу на 1 день вперед
+            if (File.Exists("time.txt"))
+            {
+                string timeText = File.ReadAllText("time.txt").Trim();
+                string[] parts = timeText.Split(',');
+
+                if (parts.Length == 6 &&
+                    int.TryParse(parts[0], out int year) &&
+                    int.TryParse(parts[1], out int month) &&
+                    int.TryParse(parts[2], out int day) &&
+                    int.TryParse(parts[3], out int hour) &&
+                    int.TryParse(parts[4], out int minute) &&
+                    int.TryParse(parts[5], out int second))
+                {
+                    DateTime parsedTime = new DateTime(year, month, day, hour, minute, second);
+                    DateTime newTime = parsedTime.AddDays(1);
+                    string newTimeText = $"{newTime.Year}, {newTime.Month}, {newTime.Day}, {newTime.Hour}, {newTime.Minute}, {newTime.Second}";
+                    File.WriteAllText("time.txt", newTimeText);
+                }
+            }
         }
     }
 }
