@@ -18,11 +18,9 @@ namespace LR4
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
             //Application.Run(new Form2());
-            Application.Run(new Form3());
-            //Application.Run(new Form4());
-            //Application.Run(new Form6());
-
+            //Application.Run(new Form3());
             Application.Run(new Form4());
+            //Application.Run(new Form6());
         }
     }
 }
