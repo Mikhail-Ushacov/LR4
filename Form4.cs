@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -61,8 +62,6 @@ namespace LR4
             }
         }
 
-
-
         private void LoadCandidates()
         {
             if (File.Exists("candidates_company.txt"))
@@ -100,6 +99,9 @@ namespace LR4
         {
             DateTime now = DateTime.Now;
 
+            buttonResults.Enabled = false;
+
+
             if (now < startTime)
             {
                 TimeSpan untilStart = startTime - now;
@@ -114,12 +116,27 @@ namespace LR4
             {
                 labelTimeLeft.Text = "Голосування завершено!";
                 buttonVote.Enabled = false;
-
                 buttonResults.Enabled = true;
+            }
+
+            // Перевірка: якщо залишився один кандидат — оголосити переможця
+            string candidatesFile = "candidates.txt";
+            if (File.Exists(candidatesFile))
+            {
+                string[] remainingCandidates = File.ReadAllLines(candidatesFile);
+                if (remainingCandidates.Length == 1)
+                {
+                    string winner = remainingCandidates[0].Trim();
+                    labelTimeLeft.Text = $"Голосування завершено! Переміг {winner}";
+                    buttonVote.Enabled = false;
+                    buttonResults.Enabled = true;
+                    timer1.Stop(); // Зупиняємо таймер, оскільки голосування завершене
+                }
             }
 
             CheckIfCanVote();
         }
+
 
         private void ButtonResults_Click(object sender, EventArgs e)
         {
@@ -134,10 +151,23 @@ namespace LR4
         private void CheckIfCanVote()
         {
             DateTime now = DateTime.Now;
-            if (checkBoxAgree.Checked && now >= startTime && now < endTime)
+            if (checkBoxAgree.Checked && now >= startTime && now < endTime && listBoxCandidates.Items.Count > 1)
                 buttonVote.Enabled = true;
             else
+            {
                 buttonVote.Enabled = false;
+                buttonResults.Enabled = true; string candidatesFile = "candidates.txt";
+                
+                if (File.Exists(candidatesFile))
+                {
+                    string[] remainingCandidates = File.ReadAllLines(candidatesFile);
+                    if (remainingCandidates.Length == 1)
+                    {
+                        string winner = remainingCandidates[0].Trim();
+                        MessageBox.Show($"Голосування завершено! Переміг {winner}");
+                    }
+                }
+            }
         }
 
         private void buttonRules_Click(object sender, EventArgs e)

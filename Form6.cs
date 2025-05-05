@@ -178,7 +178,7 @@ namespace LR4
 
             var passedCandidates = filteredVotes.Select(v => v.Key).ToHashSet();
 
-            if (filteredVotes.Count == 0)
+            if (filteredVotes.Count == 0 && passedCandidates.Count > 1)
             {
                 MessageBox.Show("Всі кандидати набрали менше 15% голосів. Завершення голосування.");
                 return null;
