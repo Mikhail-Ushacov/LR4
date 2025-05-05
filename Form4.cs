@@ -18,7 +18,7 @@ namespace LR4
             LoadCandidates();
             LoadStages(); // Загрузка етапів з файлу
 
-            startTime = new DateTime(2025, 4, 1, 12, 0, 0); // Початок голосування
+            LoadStartTime();
             endTime = startTime.AddHours(1);   // Кінець голосування
 
             labelStartDate.Text = "Дата початку: " + startTime.ToString("dd.MM.yyyy HH:mm:ss");
@@ -30,6 +30,38 @@ namespace LR4
             timer1.Tick += Timer1_Tick;
             timer1.Start();
         }
+
+        private void LoadStartTime()
+        {
+            if (File.Exists("time.txt"))
+            {
+                string timeText = File.ReadAllText("time.txt").Trim();
+                string[] parts = timeText.Split(',');
+
+                if (parts.Length == 6 &&
+                    int.TryParse(parts[0], out int year) &&
+                    int.TryParse(parts[1], out int month) &&
+                    int.TryParse(parts[2], out int day) &&
+                    int.TryParse(parts[3], out int hour) &&
+                    int.TryParse(parts[4], out int minute) &&
+                    int.TryParse(parts[5], out int second))
+                {
+                    startTime = new DateTime(year, month, day, hour, minute, second);
+                }
+                else
+                {
+                    MessageBox.Show("Неправильний формат у time.txt. Використано поточний час.");
+                    startTime = DateTime.Now;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Файл time.txt не знайдено. Використано поточний час.");
+                startTime = DateTime.Now;
+            }
+        }
+
+
 
         private void LoadCandidates()
         {
@@ -83,13 +115,13 @@ namespace LR4
                 labelTimeLeft.Text = "Голосування завершено!";
                 buttonVote.Enabled = false;
 
-                OpenForm6();
+                buttonResults.Enabled = true;
             }
 
             CheckIfCanVote();
         }
 
-        private void OpenForm6()
+        private void ButtonResults_Click(object sender, EventArgs e)
         {
             // Перевіряємо, чи форма ще не відкрита
             if (Application.OpenForms["Form6"] == null)
@@ -149,6 +181,12 @@ namespace LR4
         {
             Form3 form3 = new Form3();
             form3.Show();
+        }
+
+        public void ShiftStartTimeByOneDay()
+        {
+            startTime = startTime.AddDays(1);
+            labelStartDate.Text = "Дата початку: " + startTime.ToString("dd.MM.yyyy HH:mm:ss");
         }
     }
 }

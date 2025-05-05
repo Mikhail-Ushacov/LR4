@@ -25,6 +25,9 @@ namespace LR4
             {
                 string[] candidatesArray = File.ReadAllLines("candidates.txt");
                 candidates.AddRange(candidatesArray);
+
+                listBoxCandidates.Items.Clear();
+                listBoxCandidates.Items.AddRange(candidatesArray);
             }
             else
             {
@@ -34,7 +37,7 @@ namespace LR4
 
         private void LoadResultsToChart()
         {
-            voteCounts.Clear(); // Очистка попередніх результатів
+            voteCounts.Clear();
 
             if (!File.Exists("result.txt"))
             {
@@ -44,7 +47,6 @@ namespace LR4
 
             string[] lines = File.ReadAllLines("result.txt");
 
-            // Підрахунок голосів
             foreach (string line in lines)
             {
                 string[] parts = line.Split(';');
@@ -62,21 +64,19 @@ namespace LR4
             chart1.Series["Series1"].Points.Clear();
 
             List<KeyValuePair<string, int>> sortedVotes = voteCounts.OrderByDescending(v => v.Value).ToList();
-            double percentage;
 
-            // Відображення на діаграмі
             foreach (var kvp in sortedVotes)
             {
-                percentage = ((double)kvp.Value / totalVotes) * 100;
+                double percentage = ((double)kvp.Value / totalVotes) * 100;
                 string label = $"{kvp.Key} ({percentage:F1}%)";
 
                 DataPoint point = new DataPoint
                 {
                     AxisLabel = kvp.Key,
-                    YValues = new double[] { kvp.Value }
+                    YValues = new double[] { kvp.Value },
+                    Label = label
                 };
 
-                point.Label = label;
                 chart1.Series["Series1"].Points.Add(point);
             }
 
@@ -84,10 +84,9 @@ namespace LR4
             chart1.Series["Series1"]["PieLabelStyle"] = "Outside";
         }
 
-        // Обробник події для збереження результатів
         private void ButtonSaveStageResults_Click(object sender, EventArgs e)
         {
-            int stage = 1;  // Оновіть це значення залежно від вашої логіки
+            int stage = 1;
             List<KeyValuePair<string, int>> sortedVotes = voteCounts.OrderByDescending(v => v.Value).ToList();
             int totalVotes = voteCounts.Values.Sum();
 
@@ -96,83 +95,138 @@ namespace LR4
 
         private void SaveStageResults(int stage, List<KeyValuePair<string, int>> sortedVotes, int totalVotes)
         {
-            // Відсіяти кандидатів з менше ніж 15%
-            List<KeyValuePair<string, int>> filteredVotes = sortedVotes
-                .Where(v => ((double)v.Value / totalVotes) * 100 >= 15)
-                .ToList();
-
-            // Оновити candidates.txt – залишити тільки тих, хто має >= 15%
-            if (filteredVotes.Count > 0)
-            {
-                File.WriteAllLines("candidates.txt", filteredVotes.Select(v => v.Key));
-            }
-            else
-            {
-                MessageBox.Show("Всі кандидати набрали менше 15% голосів. Завершення голосування.");
-                return; // Не продовжуємо, якщо немає кандидатів.
-            }
-
-            // Формування результатів для етапу
-            string stageResult = $"//Етап {stage}\n";
-            int rank = 1;
-
-            foreach (var kvp in filteredVotes)
-            {
-                double percentage = ((double)kvp.Value / totalVotes) * 100;
-                string formattedPercentage = percentage.ToString("F1").Replace('.', ','); // Український формат
-                stageResult += $"{rank}. {kvp.Key}: {formattedPercentage}%\n";
-                rank++;
-            }
+            var passedCandidates = FilterCandidates(sortedVotes, totalVotes);
+            if (passedCandidates == null || passedCandidates.Count == 0)
+                return;
 
             string path = "stages.txt";
             List<string> lines;
 
-            // Читання поточного вмісту файлу stages.txt
             if (File.Exists(path))
-            {
                 lines = File.ReadAllLines(path).ToList();
-            }
             else
-            {
                 lines = new List<string>();
-            }
 
-            // Визначаємо поточний номер етапу
+            // Чтение текущего этапа из первой строки
             int currentStage = 1;
-            var stagesLine = lines.FirstOrDefault(l => l.StartsWith("Етапи:"));
-            if (stagesLine != null)
+            if (lines.Count > 0 && lines[0].StartsWith("Етапи:"))
             {
-                currentStage = int.Parse(stagesLine.Split(':')[1].Trim());
+                var parts = lines[0].Split(':');
+                if (parts.Length == 2 && int.TryParse(parts[1].Trim(), out int stageFromFile))
+                    currentStage = stageFromFile;
             }
 
-            // Якщо кандидатів більше одного, збільшуємо номер етапу
-            if (filteredVotes.Count > 1)
+            // Формирование результатов для текущего этапа
+            string stageResult = $"//Етап {currentStage}\n";
+            int rank = 1;
+
+            foreach (var kvp in sortedVotes.Where(v => passedCandidates.Contains(v.Key)))
             {
+                double percentage = ((double)kvp.Value / totalVotes) * 100;
+                string formattedPercentage = percentage.ToString("F1").Replace('.', ',');
+                stageResult += $"{rank}. {kvp.Key}: {formattedPercentage}%\n";
+                rank++;
+            }
+
+            // Увеличение этапа, если осталось больше одного кандидата
+            if (passedCandidates.Count > 1)
                 currentStage++;
-            }
 
-            // Оновлення "Етапи: N" в першому рядку
-            if (stagesLine != null)
-            {
-                lines[lines.IndexOf(stagesLine)] = $"Етапи: {currentStage}";
-            }
+            // Обновление первой строки с номером этапа
+            if (lines.Count > 0 && lines[0].StartsWith("Етапи:"))
+                lines[0] = $"Етапи: {currentStage}";
             else
-            {
                 lines.Insert(0, $"Етапи: {currentStage}");
-            }
 
-            // Додавання нових результатів етапу
-            lines.Add(""); // Пустий рядок для розділення
+            // Добавление результатов этапа
+            lines.Add("");
             lines.Add(stageResult.TrimEnd());
 
-            // Запис назад у файл stages.txt
             File.WriteAllLines(path, lines);
 
-            // Повернення до Form4
-            //this.Close(); // Закриття поточної форми
-            Form4 form4 = new Form4();
-            form4.Show();
-            
+            // Зміщення часу на 1 день вперед
+            if (File.Exists("time.txt"))
+            {
+                string timeText = File.ReadAllText("time.txt").Trim();
+                string[] parts = timeText.Split(',');
+
+                if (parts.Length == 6 &&
+                    int.TryParse(parts[0], out int year) &&
+                    int.TryParse(parts[1], out int month) &&
+                    int.TryParse(parts[2], out int day) &&
+                    int.TryParse(parts[3], out int hour) &&
+                    int.TryParse(parts[4], out int minute) &&
+                    int.TryParse(parts[5], out int second))
+                {
+                    DateTime parsedTime = new DateTime(year, month, day, hour, minute, second);
+                    DateTime newTime = parsedTime.AddDays(1);
+                    string newTimeText = $"{newTime.Year}, {newTime.Month}, {newTime.Day}, {newTime.Hour}, {newTime.Minute}, {newTime.Second}";
+                    File.WriteAllText("time.txt", newTimeText);
+                }
+            }
+
+            File.WriteAllText("result.txt", string.Empty); // Очищення файлу результатів
+
+            this.Close();
+        }
+
+        private HashSet<string> FilterCandidates(List<KeyValuePair<string, int>> sortedVotes, int totalVotes)
+        {
+            List<KeyValuePair<string, int>> filteredVotes = sortedVotes
+                .Where(v => ((double)v.Value / totalVotes) * 100 >= 15)
+                .ToList();
+
+            var passedCandidates = filteredVotes.Select(v => v.Key).ToHashSet();
+
+            if (filteredVotes.Count == 0)
+            {
+                MessageBox.Show("Всі кандидати набрали менше 15% голосів. Завершення голосування.");
+                return null;
+            }
+
+            File.WriteAllLines("candidates.txt", passedCandidates);
+
+            if (File.Exists("candidates_company.txt"))
+            {
+                var companyLines = File.ReadAllLines("candidates_company.txt").ToList();
+                var updatedLines = new List<string>();
+
+                for (int i = 0; i < companyLines.Count;)
+                {
+                    string line = companyLines[i].Trim();
+
+                    if (char.IsDigit(line.FirstOrDefault()) && line.Contains('.') && line.IndexOf('.') < line.Length - 2)
+                    {
+                        string candidateName = line.Substring(line.IndexOf('.') + 1).Trim();
+
+                        var block = new List<string>();
+                        while (i < companyLines.Count && !string.IsNullOrWhiteSpace(companyLines[i]))
+                        {
+                            block.Add(companyLines[i]);
+                            i++;
+                        }
+
+                        if (i < companyLines.Count)
+                        {
+                            block.Add("");
+                            i++;
+                        }
+
+                        if (passedCandidates.Contains(candidateName))
+                        {
+                            updatedLines.AddRange(block);
+                        }
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                }
+
+                File.WriteAllLines("candidates_company.txt", updatedLines);
+            }
+
+            return passedCandidates;
         }
     }
 }

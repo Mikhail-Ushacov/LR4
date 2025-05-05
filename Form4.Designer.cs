@@ -25,6 +25,8 @@
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listBoxCandidates = new System.Windows.Forms.ListBox();
+            this.buttonResults = new System.Windows.Forms.Button();
+            this.labelStage = new System.Windows.Forms.Label();
             this.labelStartDate = new System.Windows.Forms.Label();
             this.labelEndDate = new System.Windows.Forms.Label();
             this.labelTimeLeft = new System.Windows.Forms.Label();
@@ -33,7 +35,6 @@
             this.buttonVote = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.labelStage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -52,6 +53,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.buttonResults);
             this.splitContainer1.Panel2.Controls.Add(this.labelStage);
             this.splitContainer1.Panel2.Controls.Add(this.labelStartDate);
             this.splitContainer1.Panel2.Controls.Add(this.labelEndDate);
@@ -72,6 +74,25 @@
             this.listBoxCandidates.Name = "listBoxCandidates";
             this.listBoxCandidates.Size = new System.Drawing.Size(300, 400);
             this.listBoxCandidates.TabIndex = 0;
+            // 
+            // buttonResults
+            // 
+            this.buttonResults.Location = new System.Drawing.Point(13, 349);
+            this.buttonResults.Name = "buttonResults";
+            this.buttonResults.Size = new System.Drawing.Size(115, 35);
+            this.buttonResults.TabIndex = 8;
+            this.buttonResults.Text = "Результати";
+            this.buttonResults.UseVisualStyleBackColor = true;
+            this.buttonResults.Click += new System.EventHandler(this.ButtonResults_Click);
+            // 
+            // labelStage
+            // 
+            this.labelStage.AutoSize = true;
+            this.labelStage.Location = new System.Drawing.Point(10, 4);
+            this.labelStage.Name = "labelStage";
+            this.labelStage.Size = new System.Drawing.Size(35, 13);
+            this.labelStage.TabIndex = 7;
+            this.labelStage.Text = "label1";
             // 
             // labelStartDate
             // 
@@ -137,15 +158,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // labelStage
-            // 
-            this.labelStage.AutoSize = true;
-            this.labelStage.Location = new System.Drawing.Point(10, 4);
-            this.labelStage.Name = "labelStage";
-            this.labelStage.Size = new System.Drawing.Size(35, 13);
-            this.labelStage.TabIndex = 7;
-            this.labelStage.Text = "label1";
-            // 
             // Form4
             // 
             this.ClientSize = new System.Drawing.Size(600, 400);
@@ -162,5 +174,6 @@
         }
 
         private System.Windows.Forms.Label labelStage;
+        private System.Windows.Forms.Button buttonResults;
     }
 }
