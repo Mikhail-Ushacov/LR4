@@ -19,7 +19,7 @@ namespace LR4
             LoadStages(); // Загрузка етапів з файлу
 
             LoadStartTime();
-            endTime = startTime.AddHours(10000);   // Кінець голосування
+            endTime = startTime.AddHours(1);   // Кінець голосування
 
             labelStartDate.Text = "Дата початку: " + startTime.ToString("dd.MM.yyyy HH:mm:ss");
             labelEndDate.Text = "Дата завершення: " + endTime.ToString("dd.MM.yyyy HH:mm:ss");
@@ -115,13 +115,13 @@ namespace LR4
                 labelTimeLeft.Text = "Голосування завершено!";
                 buttonVote.Enabled = false;
 
-                OpenForm6();
+                buttonResults.Enabled = true;
             }
 
             CheckIfCanVote();
         }
 
-        private void OpenForm6()
+        private void ButtonResults_Click(object sender, EventArgs e)
         {
             // Перевіряємо, чи форма ще не відкрита
             if (Application.OpenForms["Form6"] == null)
@@ -188,6 +188,5 @@ namespace LR4
             startTime = startTime.AddDays(1);
             labelStartDate.Text = "Дата початку: " + startTime.ToString("dd.MM.yyyy HH:mm:ss");
         }
-
     }
 }

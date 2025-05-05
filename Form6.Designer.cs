@@ -14,9 +14,9 @@
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.listBoxCandidates = new System.Windows.Forms.ListBox();
             this.ButtonSaveStageResults = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -26,14 +26,14 @@
             // listBoxCandidates
             // 
             this.listBoxCandidates.FormattingEnabled = true;
-            this.listBoxCandidates.Location = new System.Drawing.Point(672, 20);
+            this.listBoxCandidates.Location = new System.Drawing.Point(916, 20);
             this.listBoxCandidates.Name = "listBoxCandidates";
             this.listBoxCandidates.Size = new System.Drawing.Size(200, 498);
             this.listBoxCandidates.TabIndex = 1;
             // 
             // ButtonSaveStageResults
             // 
-            this.ButtonSaveStageResults.Location = new System.Drawing.Point(809, 539);
+            this.ButtonSaveStageResults.Location = new System.Drawing.Point(1053, 539);
             this.ButtonSaveStageResults.Name = "ButtonSaveStageResults";
             this.ButtonSaveStageResults.Size = new System.Drawing.Size(75, 23);
             this.ButtonSaveStageResults.TabIndex = 2;
@@ -43,33 +43,33 @@
             // 
             // chart1
             // 
-            chartArea2.InnerPlotPosition.Auto = false;
-            chartArea2.InnerPlotPosition.Height = 80F;
-            chartArea2.InnerPlotPosition.Width = 80F;
-            chartArea2.InnerPlotPosition.X = 10F;
-            chartArea2.InnerPlotPosition.Y = 10F;
-            chartArea2.Name = "ChartArea1";
-            chartArea2.Position.Auto = false;
-            chartArea2.Position.Height = 90F;
-            chartArea2.Position.Width = 90F;
-            chartArea2.Position.X = 5F;
-            chartArea2.Position.Y = 5F;
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea1.InnerPlotPosition.Auto = false;
+            chartArea1.InnerPlotPosition.Height = 80F;
+            chartArea1.InnerPlotPosition.Width = 80F;
+            chartArea1.InnerPlotPosition.X = 10F;
+            chartArea1.InnerPlotPosition.Y = 10F;
+            chartArea1.Name = "ChartArea1";
+            chartArea1.Position.Auto = false;
+            chartArea1.Position.Height = 90F;
+            chartArea1.Position.Width = 90F;
+            chartArea1.Position.X = 5F;
+            chartArea1.Position.Y = 5F;
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(20, 20);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(637, 542);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(890, 542);
             this.chart1.TabIndex = 0;
             // 
             // Form6
             // 
-            this.ClientSize = new System.Drawing.Size(896, 574);
+            this.ClientSize = new System.Drawing.Size(1140, 574);
             this.Controls.Add(this.ButtonSaveStageResults);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.listBoxCandidates);
