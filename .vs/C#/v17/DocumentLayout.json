@@ -1,46 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Owner\\Desktop\\LR4\\",
+  "WorkspaceRootPath": "C:\\Users\\Owner\\Documents\\Visual Studio 2022\\Saves\\C#\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|c:\\users\\owner\\desktop\\lr4\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|C:\\Users\\Owner\\Documents\\Visual Studio 2022\\Saves\\C#\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|solutionrelative:form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|C:\\Users\\Owner\\Desktop\\LR4\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|solutionrelative:form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|c:\\users\\owner\\documents\\visual studio 2022\\saves\\c#\\form4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|solutionrelative:form4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|C:\\Users\\Owner\\Desktop\\LR4\\form2.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|solutionrelative:form2.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|C:\\Users\\Owner\\Desktop\\LR4\\form6.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|C:\\Users\\Owner\\Documents\\Visual Studio 2022\\Saves\\C#\\form6.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|solutionrelative:form6.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|C:\\Users\\Owner\\Desktop\\LR4\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|C:\\Users\\Owner\\Documents\\Visual Studio 2022\\Saves\\C#\\form4.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|solutionrelative:form4.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|C:\\Users\\Owner\\Documents\\Visual Studio 2022\\Saves\\C#\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|C:\\Users\\Owner\\Desktop\\LR4\\form6.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|solutionrelative:form6.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|C:\\Users\\Owner\\Desktop\\LR4\\form3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|solutionrelative:form3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|C:\\Users\\Owner\\Desktop\\LR4\\form4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|C:\\Users\\Owner\\Documents\\Visual Studio 2022\\Saves\\C#\\form4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|solutionrelative:form4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|C:\\Users\\Owner\\Desktop\\LR4\\form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|solutionrelative:form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|C:\\Users\\Owner\\Desktop\\LR4\\form4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{086C8A44-D9EE-4296-B0AE-F5DE3FDD3BC3}|C#.csproj|solutionrelative:form4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,126 +34,80 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Form2.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Owner\\Desktop\\LR4\\Form2.Designer.cs",
-              "RelativeDocumentMoniker": "Form2.Designer.cs",
-              "ToolTip": "C:\\Users\\Owner\\Desktop\\LR4\\Form2.Designer.cs",
-              "RelativeToolTip": "Form2.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001384|",
-              "WhenOpened": "2025-05-06T17:15:55.999Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Form4.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "C:\\Users\\Owner\\Desktop\\LR4\\Form4.cs",
-              "RelativeDocumentMoniker": "Form4.cs",
-              "ToolTip": "C:\\Users\\ZXC\\Desktop\\LR4\\Form4.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "..\\..\\..\\ZXC\\Desktop\\LR4\\Form4.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentIndex": 3,
+              "Title": "Form4.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Owner\\Documents\\Visual Studio 2022\\Saves\\C#\\Form4.Designer.cs",
+              "RelativeDocumentMoniker": "Form4.Designer.cs",
+              "ToolTip": "C:\\Users\\Owner\\Documents\\Visual Studio 2022\\Saves\\C#\\Form4.Designer.cs",
+              "RelativeToolTip": "Form4.Designer.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAowFUAAABYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T17:15:56.069Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Form3.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "C:\\Users\\Owner\\Desktop\\LR4\\Form3.cs",
-              "RelativeDocumentMoniker": "Form3.cs",
-              "ToolTip": "C:\\Users\\ZXC\\Desktop\\LR4\\Form3.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "..\\..\\..\\ZXC\\Desktop\\LR4\\Form3.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T17:15:56.07Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Form2.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Owner\\Desktop\\LR4\\Form2.cs",
-              "RelativeDocumentMoniker": "Form2.cs",
-              "ToolTip": "C:\\Users\\Owner\\Desktop\\LR4\\Form2.cs [Design]",
-              "RelativeToolTip": "Form2.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T17:15:56.07Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-05-05T16:10:09.927Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Form2.cs",
-              "DocumentMoniker": "C:\\Users\\Owner\\Desktop\\LR4\\Form2.cs",
+              "DocumentMoniker": "C:\\Users\\Owner\\Documents\\Visual Studio 2022\\Saves\\C#\\Form2.cs",
               "RelativeDocumentMoniker": "Form2.cs",
-              "ToolTip": "C:\\Users\\Owner\\Desktop\\LR4\\Form2.cs",
+              "ToolTip": "C:\\Users\\Owner\\Documents\\Visual Studio 2022\\Saves\\C#\\Form2.cs",
               "RelativeToolTip": "Form2.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAOEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAANkAAAAAAAAAAAAIwFIBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T17:15:56.208Z",
+              "WhenOpened": "2025-05-05T15:50:46.635Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Form6.cs",
-              "DocumentMoniker": "C:\\Users\\Owner\\Desktop\\LR4\\Form6.cs",
+              "DocumentMoniker": "C:\\Users\\Owner\\Documents\\Visual Studio 2022\\Saves\\C#\\Form6.cs",
               "RelativeDocumentMoniker": "Form6.cs",
-              "ToolTip": "C:\\Users\\Owner\\Desktop\\LR4\\Form6.cs",
+              "ToolTip": "C:\\Users\\Owner\\Documents\\Visual Studio 2022\\Saves\\C#\\Form6.cs",
               "RelativeToolTip": "Form6.cs",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAiwFYAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAswHYAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T17:15:56.258Z"
+              "WhenOpened": "2025-04-27T13:49:04.19Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form4.cs",
+              "DocumentMoniker": "C:\\Users\\Owner\\Documents\\Visual Studio 2022\\Saves\\C#\\Form4.cs",
+              "RelativeDocumentMoniker": "Form4.cs",
+              "ToolTip": "C:\\Users\\Owner\\Documents\\Visual Studio 2022\\Saves\\C#\\Form4.cs",
+              "RelativeToolTip": "Form4.cs",
+              "ViewState": "AgIAAJAAAAAAAAAAAADwv5sAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T13:53:53.89Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Form6.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Owner\\Desktop\\LR4\\Form6.Designer.cs",
-              "RelativeDocumentMoniker": "Form6.Designer.cs",
-              "ToolTip": "C:\\Users\\Owner\\Desktop\\LR4\\Form6.Designer.cs",
-              "RelativeToolTip": "Form6.Designer.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAowBsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T17:15:56.259Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Form4.cs",
-              "DocumentMoniker": "C:\\Users\\Owner\\Desktop\\LR4\\Form4.cs",
+              "Title": "Form4.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "C:\\Users\\Owner\\Documents\\Visual Studio 2022\\Saves\\C#\\Form4.cs",
               "RelativeDocumentMoniker": "Form4.cs",
-              "ToolTip": "C:\\Users\\Owner\\Desktop\\LR4\\Form4.cs",
-              "RelativeToolTip": "Form4.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAD4vxoAAAAJAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Owner\\Documents\\Visual Studio 2022\\Saves\\C#\\Form4.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "Form4.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T17:15:56.26Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Form5.cs",
-              "DocumentMoniker": "C:\\Users\\Owner\\Desktop\\LR4\\Form5.cs",
-              "RelativeDocumentMoniker": "Form5.cs",
-              "ToolTip": "C:\\Users\\Owner\\Desktop\\LR4\\Form5.cs",
-              "RelativeToolTip": "Form5.cs",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAcwGAAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T17:15:56.261Z"
+              "WhenOpened": "2025-04-28T18:41:54.202Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Owner\\Desktop\\LR4\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\Owner\\Documents\\Visual Studio 2022\\Saves\\C#\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\Owner\\Desktop\\LR4\\Program.cs",
+              "ToolTip": "C:\\Users\\Owner\\Documents\\Visual Studio 2022\\Saves\\C#\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAuwAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T17:15:56.262Z"
+              "WhenOpened": "2025-04-27T13:01:09.646Z"
             }
           ]
         }

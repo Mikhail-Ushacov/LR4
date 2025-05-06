@@ -35,15 +35,13 @@ namespace LR4
 
             File.AppendAllText("user.txt", userData + Environment.NewLine);
 
-            MessageBox.Show("Реєстрація успішна! Очікуйте підтвердження адміністратора.", "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Реєстрація успішна!", "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Очистити поля після реєстрації
             textBoxName.Clear();
             textBoxSurname.Clear();
             textBoxPassport.Clear();
             textBoxPassword.Clear();
-
-            this.Close(); // Return to login form
         }
     }
 }

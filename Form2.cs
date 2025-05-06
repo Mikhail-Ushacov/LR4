@@ -17,10 +17,7 @@ namespace LR4
         private TabPage tabUsers;
         private TabPage tabCandidates;
         private TabPage tabResults;
-<<<<<<< HEAD
         private TabPage tabSettings;
-=======
->>>>>>> c26998db75514c4815b30a2800100fb1075acf25
 
         public Form2()
         {
@@ -49,13 +46,10 @@ namespace LR4
             tabResults.Controls.Add(CreateResultsTabContent());
             tabControl1.Controls.Add(tabResults);
 
-<<<<<<< HEAD
             tabSettings = new TabPage("Налаштування");
             tabSettings.Controls.Add(CreateSettingsTabContent());
             tabControl1.Controls.Add(tabSettings);
 
-=======
->>>>>>> c26998db75514c4815b30a2800100fb1075acf25
             this.Controls.Add(tabControl1);
         }
 
@@ -289,7 +283,7 @@ namespace LR4
                 if (timeParts.Length == 6)
                 {
                     int[] timeValues = Array.ConvertAll(timeParts, int.Parse);
-                    dateTimePicker.Value = new DateTime(timeValues[0], timeValues[1], timeValues[2], 
+                    dateTimePicker.Value = new DateTime(timeValues[0], timeValues[1], timeValues[2],
                                                       timeValues[3], timeValues[4], timeValues[5]);
                 }
             }
@@ -323,7 +317,7 @@ namespace LR4
             };
 
             btnClearStages.Click += (s, e) => {
-                if (MessageBox.Show("Ви впевнені, що хочете очистити всі етапи?", "Підтвердження", 
+                if (MessageBox.Show("Ви впевнені, що хочете очистити всі етапи?", "Підтвердження",
                                    MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     File.WriteAllText("stages.txt", "Етапи: 0\n");

@@ -10,19 +10,4 @@ C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\obj\Debug\C#.pdb
 C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\obj\Debug\LR4.Form1.resources
 C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\obj\Debug\LR4.Form4.resources
 C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\obj\Debug\LR4.Form6.resources
-<<<<<<< HEAD
-C:\Users\ZXC\Desktop\LR4\obj\Debug\C#.csproj.AssemblyReference.cache
-C:\Users\ZXC\Desktop\LR4\obj\Debug\LR4.Form1.resources
-C:\Users\ZXC\Desktop\LR4\obj\Debug\LR4.Form4.resources
-C:\Users\ZXC\Desktop\LR4\obj\Debug\LR4.Form6.resources
-C:\Users\ZXC\Desktop\LR4\obj\Debug\C_.Properties.Resources.resources
-C:\Users\ZXC\Desktop\LR4\obj\Debug\C#.csproj.GenerateResource.cache
-C:\Users\ZXC\Desktop\LR4\obj\Debug\C#.csproj.CoreCompileInputs.cache
-C:\Users\ZXC\Desktop\LR4\obj\Debug\C#.exe
-C:\Users\ZXC\Desktop\LR4\obj\Debug\C#.pdb
-C:\Users\ZXC\Desktop\LR4\bin\Debug\C#.exe.config
-C:\Users\ZXC\Desktop\LR4\bin\Debug\C#.exe
-C:\Users\ZXC\Desktop\LR4\bin\Debug\C#.pdb
-=======
 C:\Users\Owner\Documents\Visual Studio 2022\Saves\C#\obj\Debug\LR4.Form3.resources
->>>>>>> c26998db75514c4815b30a2800100fb1075acf25
