@@ -7,10 +7,12 @@
         private System.Windows.Forms.ListBox listBoxCandidates;
         private System.Windows.Forms.Label labelStartDate;
         private System.Windows.Forms.Label labelTimeLeft;
+        private System.Windows.Forms.Label labelEndDate;
         private System.Windows.Forms.Button buttonRules;
         private System.Windows.Forms.CheckBox checkBoxAgree;
         private System.Windows.Forms.Button buttonVote;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button1;
 
         protected override void Dispose(bool disposing)
         {
@@ -23,11 +25,15 @@
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listBoxCandidates = new System.Windows.Forms.ListBox();
+            this.buttonResults = new System.Windows.Forms.Button();
+            this.labelStage = new System.Windows.Forms.Label();
             this.labelStartDate = new System.Windows.Forms.Label();
+            this.labelEndDate = new System.Windows.Forms.Label();
             this.labelTimeLeft = new System.Windows.Forms.Label();
             this.buttonRules = new System.Windows.Forms.Button();
             this.checkBoxAgree = new System.Windows.Forms.CheckBox();
             this.buttonVote = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -47,11 +53,15 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.buttonResults);
+            this.splitContainer1.Panel2.Controls.Add(this.labelStage);
             this.splitContainer1.Panel2.Controls.Add(this.labelStartDate);
+            this.splitContainer1.Panel2.Controls.Add(this.labelEndDate);
             this.splitContainer1.Panel2.Controls.Add(this.labelTimeLeft);
             this.splitContainer1.Panel2.Controls.Add(this.buttonRules);
             this.splitContainer1.Panel2.Controls.Add(this.checkBoxAgree);
             this.splitContainer1.Panel2.Controls.Add(this.buttonVote);
+            this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Size = new System.Drawing.Size(600, 400);
             this.splitContainer1.SplitterDistance = 300;
             this.splitContainer1.TabIndex = 0;
@@ -65,6 +75,25 @@
             this.listBoxCandidates.Size = new System.Drawing.Size(300, 400);
             this.listBoxCandidates.TabIndex = 0;
             // 
+            // buttonResults
+            // 
+            this.buttonResults.Location = new System.Drawing.Point(13, 349);
+            this.buttonResults.Name = "buttonResults";
+            this.buttonResults.Size = new System.Drawing.Size(115, 35);
+            this.buttonResults.TabIndex = 8;
+            this.buttonResults.Text = "Результати";
+            this.buttonResults.UseVisualStyleBackColor = true;
+            this.buttonResults.Click += new System.EventHandler(this.ButtonResults_Click);
+            // 
+            // labelStage
+            // 
+            this.labelStage.AutoSize = true;
+            this.labelStage.Location = new System.Drawing.Point(10, 4);
+            this.labelStage.Name = "labelStage";
+            this.labelStage.Size = new System.Drawing.Size(35, 13);
+            this.labelStage.TabIndex = 7;
+            this.labelStage.Text = "label1";
+            // 
             // labelStartDate
             // 
             this.labelStartDate.AutoSize = true;
@@ -72,6 +101,14 @@
             this.labelStartDate.Name = "labelStartDate";
             this.labelStartDate.Size = new System.Drawing.Size(0, 13);
             this.labelStartDate.TabIndex = 0;
+            // 
+            // labelEndDate
+            // 
+            this.labelEndDate.AutoSize = true;
+            this.labelEndDate.Location = new System.Drawing.Point(10, 35);
+            this.labelEndDate.Name = "labelEndDate";
+            this.labelEndDate.Size = new System.Drawing.Size(0, 13);
+            this.labelEndDate.TabIndex = 6;
             // 
             // labelTimeLeft
             // 
@@ -88,6 +125,7 @@
             this.buttonRules.Size = new System.Drawing.Size(130, 30);
             this.buttonRules.TabIndex = 2;
             this.buttonRules.Text = "Правила";
+            this.buttonRules.UseVisualStyleBackColor = true;
             this.buttonRules.Click += new System.EventHandler(this.buttonRules_Click);
             // 
             // checkBoxAgree
@@ -107,7 +145,18 @@
             this.buttonVote.Size = new System.Drawing.Size(150, 30);
             this.buttonVote.TabIndex = 4;
             this.buttonVote.Text = "Почати голосування";
+            this.buttonVote.UseVisualStyleBackColor = true;
             this.buttonVote.Click += new System.EventHandler(this.buttonVote_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(153, 349);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(115, 35);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Увійти";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form4
             // 
@@ -123,5 +172,8 @@
             this.ResumeLayout(false);
 
         }
+
+        private System.Windows.Forms.Label labelStage;
+        private System.Windows.Forms.Button buttonResults;
     }
 }

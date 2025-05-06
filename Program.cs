@@ -16,8 +16,16 @@ namespace LR4
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+<<<<<<< HEAD
             Application.Run(new Form3());
             Application.Run(new Form6());
+=======
+            //Application.Run(new Form1());
+            //Application.Run(new Form2());
+            //Application.Run(new Form3());
+            Application.Run(new Form4());
+            //Application.Run(new Form6());
+>>>>>>> c26998db75514c4815b30a2800100fb1075acf25
         }
     }
 }

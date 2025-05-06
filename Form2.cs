@@ -17,7 +17,10 @@ namespace LR4
         private TabPage tabUsers;
         private TabPage tabCandidates;
         private TabPage tabResults;
+<<<<<<< HEAD
         private TabPage tabSettings;
+=======
+>>>>>>> c26998db75514c4815b30a2800100fb1075acf25
 
         public Form2()
         {
@@ -46,10 +49,13 @@ namespace LR4
             tabResults.Controls.Add(CreateResultsTabContent());
             tabControl1.Controls.Add(tabResults);
 
+<<<<<<< HEAD
             tabSettings = new TabPage("Налаштування");
             tabSettings.Controls.Add(CreateSettingsTabContent());
             tabControl1.Controls.Add(tabSettings);
 
+=======
+>>>>>>> c26998db75514c4815b30a2800100fb1075acf25
             this.Controls.Add(tabControl1);
         }
 
@@ -335,3 +341,4 @@ namespace LR4
         }
     }
 }
+

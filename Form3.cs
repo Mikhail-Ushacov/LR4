@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace LR4
@@ -37,9 +32,20 @@ namespace LR4
                 return;
             }
 
+            // Перевірка адміністратора
+            if (passportInput == "admin" && passwordInput == "1234")
+            {
+                MessageBox.Show("Вхід як адміністратор успішний!", "Адмін", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Form2 form2 = new Form2();
+                form2.Show();
+                this.Hide(); // Можна замінити на this.Close(); якщо потрібно закрити поточну форму
+                return;
+            }
+
+            // Перевірка звичайного користувача
             if (!File.Exists("verified.txt"))
             {
-                MessageBox.Show("Файл verified.txt не знайдено.");
+                MessageBox.Show("Файл verified.txt не знайдено.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -83,6 +89,18 @@ namespace LR4
                 textBoxPassport.Clear();
                 textBoxPassword.Clear();
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.Show();
+        }
+
+        private void Form3_Load(object sender, EventArgs e)
+        {
+            // Робить поле пароля прихованим
+            textBoxPassword.PasswordChar = '*';
         }
     }
 }
