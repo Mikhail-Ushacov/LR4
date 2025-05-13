@@ -1,43 +1,46 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 using System.Windows.Forms;
+using LR4.Interfaces;
+using LR4.Models;
+using LR4.Services;
 
 namespace LR4
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        private readonly IUserService _userService;
+
+        public Form1() : this(new UserService())
+        {
+        }
+
+        public Form1(IUserService userService)
         {
             InitializeComponent();
+            _userService = userService;
         }
 
         private void buttonRegister_Click(object sender, EventArgs e)
         {
-            string name = textBoxName.Text.Trim();
-            string surname = textBoxSurname.Text.Trim();
-            string passport = textBoxPassport.Text.Trim();
-            string password = textBoxPassword.Text.Trim();
-
-            if (name == "" || surname == "" || passport == "" || password == "")
+            var user = new Models.User
             {
-                MessageBox.Show("Будь ласка, заповніть усі поля!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Name = textBoxName.Text.Trim(),
+                Surname = textBoxSurname.Text.Trim(),
+                Passport = textBoxPassport.Text.Trim(),
+                Password = textBoxPassword.Text.Trim()
+            };
+
+            if (!_userService.RegisterUser(user))
+            {
+                MessageBox.Show("Будь ласка, заповніть усі поля!", "Помилка", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string userData = $"{name};{surname};{passport};{password}";
+            MessageBox.Show("Реєстрація успішна!", "Готово", 
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            File.AppendAllText("user.txt", userData + Environment.NewLine);
-
-            MessageBox.Show("Реєстрація успішна!", "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            // Очистити поля після реєстрації
+            // Clear fields after registration
             textBoxName.Clear();
             textBoxSurname.Clear();
             textBoxPassport.Clear();

@@ -1,16 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Windows.Forms;
+using LR4.Interfaces;
 
 namespace LR4
 {
     public partial class Form3 : Form
     {
-        public Form3()
+        private readonly IUserService _userService;
+        private readonly IAdminService _adminService;
+        private readonly IVotingService _votingService;
+        private readonly IVoteService _voteService;
+
+        public Form3(IUserService userService, IAdminService adminService, IVotingService votingService, IVoteService voteService)
         {
             InitializeComponent();
+            _userService = userService;
+            _adminService = adminService;
+            _votingService = votingService;
+            _voteService = voteService;
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -24,46 +31,22 @@ namespace LR4
                 return;
             }
 
-            // Перевірка адміністратора
-            if (passportInput == "admin" && passwordInput == "1234")
+            if (_userService.AuthenticateAdmin(passportInput, passwordInput))
             {
                 MessageBox.Show("Вхід як адміністратор успішний!", "Адмін", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Form2 form2 = new Form2();
+                Form2 form2 = new Form2(_adminService);
                 form2.Show();
-                this.Hide(); // Можна замінити на this.Close(); якщо потрібно закрити поточну форму
+                this.Hide();
                 return;
             }
 
-            // Перевірка звичайного користувача
-            if (!File.Exists("verified.txt"))
+            if (_userService.AuthenticateUser(passportInput, passwordInput))
             {
-                MessageBox.Show("Файл verified.txt не знайдено.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                _userService.ActivateUser(passportInput);
+                MessageBox.Show("Вхід виконано!", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Hide();
             }
-
-            string[] lines = File.ReadAllLines("verified.txt");
-            bool isMatch = false;
-
-            foreach (string line in lines)
-            {
-                string[] parts = line.Split(';');
-                if (parts.Length < 4) continue;
-
-                string name = parts[0];
-                string surname = parts[1];
-                string passport = parts[2];
-                string password = parts[3];
-
-                if (passport == passportInput && password == passwordInput)
-                {
-                    File.AppendAllText("active.txt", line + Environment.NewLine);
-                    MessageBox.Show($"Вхід виконано! Вітаємо, {name} {surname}", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    isMatch = true;
-                    break;
-                }
-            }
-
-            if (!isMatch)
+            else
             {
                 MessageBox.Show("Невірний номер паспорта або пароль.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -74,13 +57,12 @@ namespace LR4
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
+            Form1 form1 = new Form1(_userService);
             form1.Show();
         }
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            // Робить поле пароля прихованим
             textBoxPassword.PasswordChar = '*';
         }
     }

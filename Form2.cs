@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 
+using LR4.Interfaces;
+using System;
+
 namespace LR4
 {
     public partial class Form2 : Form
@@ -18,9 +21,11 @@ namespace LR4
         private TabPage tabCandidates;
         private TabPage tabResults;
         private TabPage tabSettings;
+        private readonly IAdminService _adminService;
 
-        public Form2()
+        public Form2(IAdminService adminService)
         {
+            _adminService = adminService;
             InitializeComponent();
             CreateAdminTabs();
             LoadUserData();
@@ -31,8 +36,7 @@ namespace LR4
             this.Text = "Адміністративна панель";
             this.Size = new Size(600, 400);
 
-            tabControl1 = new TabControl();
-            tabControl1.Dock = DockStyle.Fill;
+            tabControl1 = new TabControl { Dock = DockStyle.Fill };
 
             tabUsers = new TabPage("Користувачі");
             tabUsers.Controls.Add(panel1); // Move existing panel to first tab
@@ -175,16 +179,10 @@ namespace LR4
 
         private void LoadUserData()
         {
-            if (!File.Exists("user.txt"))
-            {
-                MessageBox.Show("Файл user.txt не знайдено.");
-                return;
-            }
-
-            string[] lines = File.ReadAllLines("user.txt");
+            var pendingUsers = _adminService.GetPendingRegistrations();
             int y = 10;
 
-            foreach (string line in lines)
+            foreach (string line in pendingUsers)
             {
                 if (string.IsNullOrWhiteSpace(line)) continue;
 
@@ -193,10 +191,12 @@ namespace LR4
 
                 string formattedText = $"Ім'я: {parts[0]} | Прізвище: {parts[1]} | Номер паспорта: {parts[2]}";
 
-                Label lbl = new Label();
-                lbl.Text = formattedText;
-                lbl.AutoSize = true;
-                lbl.Location = new System.Drawing.Point(10, y);
+            Label lbl = new Label
+            {
+                Text = formattedText,
+                AutoSize = true,
+                Location = new System.Drawing.Point(10, y)
+            };
 
                 Button btn = new Button
                 {
@@ -218,15 +218,10 @@ namespace LR4
             Button btn = sender as Button;
             string line = btn.Tag.ToString();
 
-            // Додаємо у verified.txt
-            File.AppendAllText("verified.txt", line + Environment.NewLine);
+            // Approve registration using service
+            _adminService.ApproveRegistration(line);
 
-            // Видаляємо з user.txt
-            var allLines = File.ReadAllLines("user.txt").ToList();
-            allLines.Remove(line);
-            File.WriteAllLines("user.txt", allLines);
-
-            // Видаляємо з інтерфейсу
+            // Remove from UI
             Label labelToRemove = null;
             foreach (Control control in this.panel1.Controls)
             {
@@ -242,7 +237,7 @@ namespace LR4
 
             MessageBox.Show("Дані підтверджено і видалено з очікування!", "Готово");
 
-            // Якщо всі підтверджені — повідомити або закрити
+            // If all approved - notify or close
             if (this.panel1.Controls.Count == 0)
             {
                 MessageBox.Show("Усі записи оброблено.");
@@ -335,4 +330,3 @@ namespace LR4
         }
     }
 }
-

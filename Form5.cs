@@ -4,23 +4,23 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 using System.Windows.Forms;
+using LR4.Interfaces;
 
 namespace LR4
 {
     public partial class Form5 : Form
     {
-        private string userData;
-        private DateTime voteStartTime;
-        private List<CheckBox> candidateCheckBoxes = new List<CheckBox>();
+        private readonly string userData;
+        private readonly DateTime voteStartTime;
+        private readonly List<CheckBox> candidateCheckBoxes = new List<CheckBox>();
+        private readonly IVoteService _voteService;
 
-        public Form5(string userLine)
+        public Form5(string userLine, IVoteService voteService)
         {
             InitializeComponent();
             this.userData = userLine;
+            _voteService = voteService;
             voteStartTime = DateTime.Now;
             ShowUserInfo();
             LoadCandidates();
@@ -37,27 +37,28 @@ namespace LR4
 
         private void LoadCandidates()
         {
-            if (!File.Exists("candidates.txt"))
+            try
             {
-                MessageBox.Show("Файл candidates.txt не знайдено.");
-                return;
+                var candidates = _voteService.GetCandidates();
+                int y = 10;
+
+                foreach (var candidate in candidates)
+                {
+                    CheckBox checkBox = new CheckBox();
+                    checkBox.Text = candidate;
+                    checkBox.Location = new System.Drawing.Point(10, y);
+                    checkBox.AutoSize = true;
+                    checkBox.CheckedChanged += CandidateCheckBox_CheckedChanged;
+
+                    panelCandidates.Controls.Add(checkBox);
+                    candidateCheckBoxes.Add(checkBox);
+
+                    y += 25;
+                }
             }
-
-            string[] candidates = File.ReadAllLines("candidates.txt");
-            int y = 10;
-
-            foreach (var candidate in candidates)
+            catch (Exception ex)
             {
-                CheckBox checkBox = new CheckBox();
-                checkBox.Text = candidate;
-                checkBox.Location = new System.Drawing.Point(10, y);
-                checkBox.AutoSize = true;
-                checkBox.CheckedChanged += CandidateCheckBox_CheckedChanged;
-
-                panelCandidates.Controls.Add(checkBox);
-                candidateCheckBoxes.Add(checkBox);
-
-                y += 25;
+                MessageBox.Show($"Помилка при завантаженні кандидатів: {ex.Message}", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -85,31 +86,17 @@ namespace LR4
             }
 
             string selectedCandidate = selected.Text;
-            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-            string[] parts = userData.Split(';');
-            if (parts.Length < 3)
+            try
             {
-                MessageBox.Show("Некоректні дані користувача.", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                _voteService.ProcessVote(userData, selectedCandidate);
+                MessageBox.Show("Голос зафіксовано!", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
             }
-
-            string firstName = parts[0];
-            string lastName = parts[1];
-            string passport = parts[2];
-
-            // Формати:
-            string resultLine = $"{firstName};{lastName};{passport};{selectedCandidate};{timestamp}"; // result.txt
-
-            File.AppendAllText("result.txt", resultLine + Environment.NewLine);
-
-            // Видалення з active.txt
-            var allLines = File.ReadAllLines("active.txt").ToList();
-            allLines.Remove(userData);
-            File.WriteAllLines("active.txt", allLines);
-
-            MessageBox.Show("Голос зафіксовано!\nІнформація записана в result.txt", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Помилка при обробці голосу: {ex.Message}", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

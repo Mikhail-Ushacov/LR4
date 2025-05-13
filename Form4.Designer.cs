@@ -126,7 +126,7 @@
             this.buttonRules.TabIndex = 2;
             this.buttonRules.Text = "Правила";
             this.buttonRules.UseVisualStyleBackColor = true;
-            this.buttonRules.Click += new System.EventHandler(this.buttonRules_Click);
+            this.buttonRules.Click += new System.EventHandler(this.ButtonRules_Click);
             // 
             // checkBoxAgree
             // 
@@ -135,7 +135,7 @@
             this.checkBoxAgree.Size = new System.Drawing.Size(220, 20);
             this.checkBoxAgree.TabIndex = 3;
             this.checkBoxAgree.Text = "Погоджуюсь з умовами";
-            this.checkBoxAgree.CheckedChanged += new System.EventHandler(this.checkBoxAgree_CheckedChanged);
+            this.checkBoxAgree.CheckedChanged += new System.EventHandler(this.CheckBoxAgree_CheckedChanged);
             // 
             // buttonVote
             // 
@@ -146,7 +146,7 @@
             this.buttonVote.TabIndex = 4;
             this.buttonVote.Text = "Почати голосування";
             this.buttonVote.UseVisualStyleBackColor = true;
-            this.buttonVote.Click += new System.EventHandler(this.buttonVote_Click);
+            this.buttonVote.Click += new System.EventHandler(this.ButtonVote_Click);
             // 
             // button1
             // 
@@ -156,7 +156,7 @@
             this.button1.TabIndex = 5;
             this.button1.Text = "Увійти";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // Form4
             // 

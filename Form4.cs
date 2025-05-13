@@ -2,24 +2,30 @@
 using System;
 using System.IO;
 using System.Windows.Forms;
+using LR4.Interfaces;
+using LR4.Services;
 
 namespace LR4
 {
     public partial class Form4 : Form
     {
-        private VotingManager votingManager;
+        private readonly IVotingService _votingService;
+        private readonly IVoteService _voteService;
 
-        public Form4()
+        public Form4(IVotingService votingService, IVoteService voteService)
         {
+            _votingService = votingService;
+            _voteService = voteService;
             InitializeComponent();
-            votingManager = new VotingManager();
 
-            votingManager.LoadCandidates(listBoxCandidates);
-            votingManager.LoadStages(); // Загрузка етапів з файлу
+            // Load candidates for informational purposes only
+            _votingService.LoadCandidates(listBoxCandidates);
+            listBoxCandidates.Enabled = false;
+            _votingService.LoadStages();
 
-            labelStartDate.Text = "Дата початку: " + votingManager.StartTime.ToString("dd.MM.yyyy HH:mm:ss");
-            labelEndDate.Text = "Дата завершення: " + votingManager.EndTime.ToString("dd.MM.yyyy HH:mm:ss");
-            labelStage.Text = "Поточний етап: " + votingManager.CurrentStage;
+            labelStartDate.Text = "Дата початку: " + _votingService.StartTime.ToString("dd.MM.yyyy HH:mm:ss");
+            labelEndDate.Text = "Дата завершення: " + _votingService.EndTime.ToString("dd.MM.yyyy HH:mm:ss");
+            labelStage.Text = "Поточний етап: " + _votingService.CurrentStage;
 
             timer1.Interval = 1000;
             timer1.Tick += Timer1_Tick;
@@ -32,14 +38,14 @@ namespace LR4
 
             buttonResults.Enabled = false;
 
-            if (now < votingManager.StartTime)
+            if (now < _votingService.StartTime)
             {
-                TimeSpan untilStart = votingManager.StartTime - now;
+                TimeSpan untilStart = _votingService.StartTime - now;
                 labelTimeLeft.Text = $"Залишилось до початку: {untilStart:dd\\:hh\\:mm\\:ss}";
             }
-            else if (now >= votingManager.StartTime && now < votingManager.EndTime)
+            else if (now >= _votingService.StartTime && now < _votingService.EndTime)
             {
-                TimeSpan untilEnd = votingManager.EndTime - now;
+                TimeSpan untilEnd = _votingService.EndTime - now;
                 labelTimeLeft.Text = $"До завершення голосування: {untilEnd:dd\\:hh\\:mm\\:ss}";
             }
             else
@@ -64,7 +70,7 @@ namespace LR4
                 }
             }
 
-            votingManager.CheckIfCanVote(checkBoxAgree, buttonVote, buttonResults, listBoxCandidates);
+            _votingService.CheckIfCanVote(checkBoxAgree, buttonVote, buttonResults, listBoxCandidates);
         }
 
         private void ButtonResults_Click(object sender, EventArgs e)
@@ -76,53 +82,52 @@ namespace LR4
             }
         }
 
-        private void checkBoxAgree_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxAgree_CheckedChanged(object sender, EventArgs e)
         {
-            votingManager.CheckIfCanVote(checkBoxAgree, buttonVote, buttonResults, listBoxCandidates);
+            _votingService.CheckIfCanVote(checkBoxAgree, buttonVote, buttonResults, listBoxCandidates);
         }
 
-        private void buttonVote_Click(object sender, EventArgs e)
+        private void ButtonVote_Click(object sender, EventArgs e)
         {
-            if (!File.Exists("active.txt"))
+            var activeVoters = _votingService.GetActiveVoters();
+            if (activeVoters.Count == 0)
             {
-                MessageBox.Show("Файл active.txt не знайдено.");
+                MessageBox.Show("Немає активних виборців.");
                 return;
             }
 
-            string[] users = File.ReadAllLines("active.txt");
-            foreach (string userLine in users)
+            foreach (string userLine in activeVoters)
             {
                 if (!string.IsNullOrWhiteSpace(userLine))
                 {
-                    Form5 voteForm = new Form5(userLine);
+                    Form5 voteForm = new Form5(userLine, _voteService);
                     voteForm.ShowDialog();
                 }
             }
         }
 
-        private void buttonRules_Click(object sender, EventArgs e)
+        private void ButtonRules_Click(object sender, EventArgs e)
         {
-            if (File.Exists("rules.txt"))
-            {
-                string rules = File.ReadAllText("rules.txt");
-                MessageBox.Show(rules, "Правила голосування", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Файл rules.txt не знайдено.");
-            }
+            string rules = _votingService.GetVotingRules();
+            MessageBox.Show(rules, "Правила голосування", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
-            Form3 form3 = new Form3();
-            form3.Show();
+            using (Form3 form3 = new Form3(
+                new UserService(),
+                new AdminService(),
+                _votingService,
+                _voteService))
+            {
+                form3.ShowDialog(this);
+            }
         }
 
         public void ShiftStartTimeByOneDay()
         {
-            votingManager.ShiftStartTimeByOneDay();
-            labelStartDate.Text = "Дата початку: " + votingManager.StartTime.ToString("dd.MM.yyyy HH:mm:ss");
+            _votingService.ShiftStartTimeByOneDay();
+            labelStartDate.Text = "Дата початку: " + _votingService.StartTime.ToString("dd.MM.yyyy HH:mm:ss");
         }
     }
 }

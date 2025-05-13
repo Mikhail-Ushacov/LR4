@@ -8,7 +8,7 @@ namespace LR4
 {
     public partial class Form6 : Form
     {
-        private VotingResultsManager votingResultsManager;
+        private readonly VotingResultsManager votingResultsManager;
 
         public Form6()
         {
