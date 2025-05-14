@@ -52,11 +52,13 @@
     <Compile Include="Interfaces\IAdminService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Interfaces\IVotingService.cs" />
+    <Compile Include="Interfaces\IVotingResultsService.cs" />
     <Compile Include="Interfaces\IVoteService.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Services\AdminService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\VotingService.cs" />
+    <Compile Include="Services\VotingResultsService.cs" />
     <Compile Include="Services\VoteService.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

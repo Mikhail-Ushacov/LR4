@@ -16,12 +16,11 @@ namespace LR4
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Initialize required services
             var votingService = new VotingService();
             var voteService = new VoteService();
+            var resultsService = new VotingResultsService();
 
-            // Start with main voting form (Form4)
-            Application.Run(new Form4(votingService, voteService));
+            Application.Run(new Form4(votingService, voteService, resultsService));
         }
     }
 }

@@ -3,70 +3,41 @@ using System;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using LR4.Interfaces;
 
 namespace LR4
 {
     public partial class Form6 : Form
     {
-        private readonly VotingResultsManager votingResultsManager;
+        private readonly IVotingResultsService _resultsService;
 
-        public Form6()
+        public Form6(IVotingResultsService resultsService)
         {
             InitializeComponent();
-            votingResultsManager = new VotingResultsManager();
+            _resultsService = resultsService;
+            LoadData();
+        }
 
+        private void LoadData()
+        {
             try
             {
                 LoadCandidates();
-                LoadResultsToChart();
+                _resultsService.LoadResultsToChart(chart1);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"Error loading data: {ex.Message}", "Error", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void LoadCandidates()
         {
             listBoxCandidates.Items.Clear();
-            foreach (var candidate in votingResultsManager.Candidates)
+            foreach (var candidate in _resultsService.GetCandidates())
             {
                 listBoxCandidates.Items.Add(candidate);
-            }
-        }
-
-        private void LoadResultsToChart()
-        {
-            try
-            {
-                votingResultsManager.LoadResultsToChart();
-
-                var sortedVotes = votingResultsManager.GetSortedVoteCounts();
-                int totalVotes = sortedVotes.Sum(v => v.Value);
-
-                chart1.Series["Series1"].Points.Clear();
-
-                foreach (var kvp in sortedVotes)
-                {
-                    double percentage = ((double)kvp.Value / totalVotes) * 100;
-                    string label = $"{kvp.Key} ({percentage:F1}%)";
-
-                    DataPoint point = new DataPoint
-                    {
-                        AxisLabel = kvp.Key,
-                        YValues = new double[] { kvp.Value },
-                        Label = label
-                    };
-
-                    chart1.Series["Series1"].Points.Add(point);
-                }
-
-                chart1.Series["Series1"].IsValueShownAsLabel = true;
-                chart1.Series["Series1"]["PieLabelStyle"] = "Outside";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
 
@@ -74,15 +45,16 @@ namespace LR4
         {
             try
             {
-                int stage = 1;
-                var sortedVotes = votingResultsManager.GetSortedVoteCounts();
-                int totalVotes = sortedVotes.Sum(v => v.Value);
-
-                votingResultsManager.SaveStageResults(stage, sortedVotes, totalVotes);
+                var votes = _resultsService.GetVoteCounts();
+                int totalVotes = votes.Values.Sum();
+                _resultsService.SaveStageResults(1, votes, totalVotes);
+                MessageBox.Show("Stage results saved successfully!", "Success",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"Error saving results: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -11,11 +11,13 @@ namespace LR4
     {
         private readonly IVotingService _votingService;
         private readonly IVoteService _voteService;
+        private readonly IVotingResultsService _resultsService;
 
-        public Form4(IVotingService votingService, IVoteService voteService)
+        public Form4(IVotingService votingService, IVoteService voteService, IVotingResultsService resultsService)
         {
             _votingService = votingService;
             _voteService = voteService;
+            _resultsService = resultsService;
             InitializeComponent();
 
             // Load candidates for informational purposes only
@@ -77,7 +79,7 @@ namespace LR4
         {
             if (Application.OpenForms["Form6"] == null)
             {
-                Form6 form6 = new Form6();
+                Form6 form6 = new Form6(_resultsService);
                 form6.Show();
             }
         }
