@@ -39,7 +39,7 @@ namespace LR4
             tabControl1 = new TabControl { Dock = DockStyle.Fill };
 
             tabUsers = new TabPage("Користувачі");
-            tabUsers.Controls.Add(panel1); // Move existing panel to first tab
+            tabUsers.Controls.Add(panel1);
             tabControl1.Controls.Add(tabUsers);
 
             tabCandidates = new TabPage("Кандидати");
