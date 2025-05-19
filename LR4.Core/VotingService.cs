@@ -25,6 +25,13 @@ namespace LR4.Services
             listBox.Items.Clear();
             listBox.Items.AddRange(File.ReadAllLines("candidates.txt"));
         }
+        public void LoadCandidatesCompany(ListBox listBox)
+        {
+            if (!File.Exists("candidates_company.txt")) return;
+
+            listBox.Items.Clear();
+            listBox.Items.AddRange(File.ReadAllLines("candidates_company.txt"));
+        }
 
         public void LoadStages()
         {

@@ -20,9 +20,8 @@ namespace LR4
             _resultsService = resultsService;
             InitializeComponent();
 
-            // Load candidates for informational purposes only
-            _votingService.LoadCandidates(listBoxCandidates);
-            listBoxCandidates.Enabled = false;
+            _votingService.LoadCandidatesCompany(listBoxCandidates);
+            listBoxCandidates.Enabled = true;
             _votingService.LoadStages();
 
             labelStartDate.Text = "Дата початку: " + _votingService.StartTime.ToString("dd.MM.yyyy HH:mm:ss");

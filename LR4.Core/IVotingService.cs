@@ -11,6 +11,7 @@ namespace LR4.Interfaces
         int CurrentStage { get; }
         
         void LoadCandidates(ListBox listBox);
+        void LoadCandidatesCompany(ListBox listBox);
         void LoadStages();
         void ShiftStartTimeByOneDay();
         bool CheckIfCanVote(CheckBox agreementCheckBox, Button voteButton, Button resultsButton, ListBox candidatesList);
